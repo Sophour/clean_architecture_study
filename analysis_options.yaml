@@ -1,0 +1,58 @@
+include: package:pedantic/analysis_options.yaml
+
+analyzer:
+  exclude:
+    - test/
+    - test/**.*
+    - test_driver/
+    - '*.g.dart'
+
+linter:
+  rules:
+    - flutter_style_todos
+    - avoid_returning_this
+    - avoid_returning_null
+    - always_declare_return_types
+    - camel_case_types
+    - avoid_init_to_null
+    - avoid_shadowing_type_parameters
+    - await_only_futures
+    - empty_constructor_bodies
+    - annotate_overrides
+    - avoid_private_typedef_functions
+    - non_constant_identifier_names
+    - null_closures
+    - overridden_fields
+    - prefer_initializing_formals
+    - slash_for_doc_comments
+    - camel_case_extensions
+    - prefer_iterable_whereType
+    - avoid_types_as_parameter_names
+    - avoid_empty_else
+    - library_names
+    - avoid_relative_lib_imports
+    - package_names
+    - file_names
+    - empty_catches
+    - unnecessary_getters_setters
+    - library_prefixes
+    - unnecessary_new
+    - recursive_getters
+    - prefer_is_empty
+    - prefer_contains
+    - prefer_is_not_empty
+    - unawaited_futures
+    - prefer_spread_collections
+    - use_full_hex_values_for_flutter_colors
+    - sort_constructors_first
+    - unnecessary_this
+    - prefer_for_elements_to_map_fromIterable
+    - unnecessary_null_in_if_null_operators
+    - unnecessary_brace_in_string_interps
+    - prefer_interpolation_to_compose_strings
+    - prefer_generic_function_type_aliases
+    - prefer_equal_for_default_values
+    - prefer_conditional_assignment
+    - prefer_collection_literals
+    - prefer_adjacent_string_concatenation
+    - package_api_docs
