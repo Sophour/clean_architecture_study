@@ -41,7 +41,7 @@ void main(){
         );
   });
 
-  test('initial state should b empty', (){
+  test('initial state should be empty', (){
     expect(bloc.initialState, equals(Empty()));
   });
 

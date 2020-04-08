@@ -8,10 +8,12 @@ import 'package:tddcleanarchitecturecourse/features/number_trivia/data/datasourc
 import 'package:tddcleanarchitecturecourse/features/number_trivia/data/repositories/number_trivia_repository_impl.dart';
 import 'package:tddcleanarchitecturecourse/features/number_trivia/domain/usecases/get_concrete_number_trivia.dart';
 import 'package:tddcleanarchitecturecourse/features/number_trivia/presentation/bloc/number_trivia_bloc.dart';
+import 'package:tddcleanarchitecturecourse/features/number_trivia/presentation/redux/middleware.dart';
 
 import 'features/number_trivia/data/datasources/number_trivia_local_data_source.dart';
 import 'features/number_trivia/domain/repositories/number_trivia_repository.dart';
 import 'features/number_trivia/domain/usecases/get_random_number_trivia.dart';
+import 'features/number_trivia/presentation/redux/store.dart';
 
 
 // TUTORIAL #13
@@ -37,6 +39,15 @@ Future<void> init() async {
       // which we register below
       inputConverter:  sl.call(),
       random:  sl.call()));
+  //// Redux
+  sl.registerFactory(() => Store(
+    middleware: sl(),
+  ));
+  sl.registerLazySingleton(() => Middleware(
+    concrete: sl(),
+    random: sl(),
+    inputConverter: sl(),
+  ));
 
   //// Use case
   sl.registerLazySingleton(() => GetConcreteNumberTrivia(sl.call()));

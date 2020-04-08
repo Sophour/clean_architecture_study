@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tddcleanarchitecturecourse/features/number_trivia/presentation/bloc/number_trivia_bloc.dart';
-import 'package:tddcleanarchitecturecourse/features/number_trivia/presentation/bloc/number_trivia_event.dart';
+import 'package:tddcleanarchitecturecourse/features/number_trivia/presentation/redux/store.dart';
+import 'package:pedantic/pedantic.dart';
 
 class TriviaControls extends StatelessWidget {
 
+  TriviaControls({this.numberTriviaStore});
+
   String inputString;
   final controller = TextEditingController();
+  final Store numberTriviaStore;
+
 
   @override
   Widget build(BuildContext context) {
@@ -23,20 +26,20 @@ class TriviaControls extends StatelessWidget {
             inputString = value;
           },
           onSubmitted: (_){
-            dispatchConcrete(context);
+            dispatchConcrete(numberTriviaStore);
           },
         ),
         SizedBox(
           height: 10.0,
         ),
-        Row(
-          children: <Widget>[
-            Expanded(
+          Row(
+            children: <Widget>[
+              Expanded(
               child: RaisedButton(
                 child: Text('Search'),
                 color: Theme.of(context).accentColor,
                 textTheme: ButtonTextTheme.primary,
-                onPressed:  () => dispatchConcrete(context),
+                onPressed:  () => dispatchConcrete(numberTriviaStore),
               ),
             ),
             SizedBox(
@@ -46,7 +49,7 @@ class TriviaControls extends StatelessWidget {
               child: RaisedButton(
                 child: Text('Get random trivia'),
                 onPressed: (){
-                  dispatchRandom(context);
+                  dispatchRandom(numberTriviaStore);
                 },
               ),),
           ],
@@ -55,14 +58,19 @@ class TriviaControls extends StatelessWidget {
     );
   }
 
-  void dispatchConcrete(BuildContext context){
+  Future<void> dispatchConcrete(Store numberTriviaStore) async {
     controller.clear();
-    BlocProvider.of<NumberTriviaBloc>(context)
-        .dispatch(GetTriviaForConcreteNumber(inputString));
+
+    int inputAsInt = await numberTriviaStore.middleware
+        .checkCorrectnessOfInput(inputString, numberTriviaStore);
+
+   await numberTriviaStore.middleware
+    .requestForConcreteNumberTrivia(inputAsInt, numberTriviaStore);
   }
-  void dispatchRandom(BuildContext context){
+
+  Future<void> dispatchRandom(Store numberTriviaStore) async {
     controller.clear();
-    BlocProvider.of<NumberTriviaBloc>(context)
-        .dispatch(GetTriviaForRandomNumber());
+    await numberTriviaStore.middleware
+    .requestForRandomNumberTrivia(numberTriviaStore);
   }
 }
