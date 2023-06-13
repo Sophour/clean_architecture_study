@@ -9,7 +9,7 @@ implements DataConnectionChecker{}
 void main(){
   NetworkInfoImpl networkInfo;
   MockDataConnectionChecker mockDataConnectionChecker;
-
+// integrately connection test
   setUp((){
     mockDataConnectionChecker = MockDataConnectionChecker();
     networkInfo = NetworkInfoImpl(mockDataConnectionChecker);
