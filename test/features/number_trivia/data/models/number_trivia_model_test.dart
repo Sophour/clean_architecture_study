@@ -34,7 +34,7 @@ void main(){
             ()  async {
           // arrange
           final Map<String, dynamic> jsonMap = json.decode(fixture('trivia_double.json'));
-          // act
+          // act and test zapier integration
           final result = NumberTriviaModel.fromJson(jsonMap);
           //assert
           expect(result, equals(tNumberTriviaModel));
