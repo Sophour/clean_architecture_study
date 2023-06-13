@@ -10,6 +10,7 @@ void main(){
   NetworkInfoImpl networkInfo;
   MockDataConnectionChecker mockDataConnectionChecker;
 // integrately connection test
+  // forth integrately connection test
   setUp((){
     mockDataConnectionChecker = MockDataConnectionChecker();
     networkInfo = NetworkInfoImpl(mockDataConnectionChecker);
