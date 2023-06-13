@@ -11,6 +11,8 @@ void main(){
   MockDataConnectionChecker mockDataConnectionChecker;
 // integrately connection test
   // forth integrately connection test
+  // fifth test. I'm going to update a card in notion so that its type won't be FED. We will see if 
+  // PR automatically occures. Highly likely this condition won't apply
   setUp((){
     mockDataConnectionChecker = MockDataConnectionChecker();
     networkInfo = NetworkInfoImpl(mockDataConnectionChecker);
